@@ -18,9 +18,17 @@ class ApplicationContext {
     List<Object> componentsScanned = componentHelper.scan();
             
     for (var component in componentsScanned) {
-        // do something with the components
-        _inject(component);
+        // do something with the component
         components.add(component);  
+    }
+    
+    // inject the autowired
+    _singletons.forEach((key, value) {
+      _inject(value);
+    });
+    for (var component in components) {
+        // do something with the components
+        _inject(component);  
     }
   }
   
@@ -46,7 +54,7 @@ class ApplicationContext {
             InstanceMirror res = mv.invoke([]);
                     
             if (res != null && res.hasReflectee) {
-                _singletons[mv.name] = _inject(res.reflectee);
+                _singletons[mv.name] = res.reflectee;
             }
        }
   }

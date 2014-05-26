@@ -6,7 +6,7 @@ main() {
   // First tests! 
   ApplicationContext.bootstrap();
   
-  test('lookup SomeComp', () {
+  test('order SomeComp', () {
     var bean = ApplicationContext.components.first;
     DoSomeComp dsc = bean;
     expect(dsc.someCalc(), 9);
@@ -17,13 +17,13 @@ main() {
 class SomeConfig {
   
   @Bean()
-  Counter counter() {
-    return new Counter();
+  Calc calc() {
+    return new Calc();
   }
   
   @Bean()
-  Calc calc() {
-    return new Calc();
+  Counter counter() {
+    return new Counter();
   }
   
 }
