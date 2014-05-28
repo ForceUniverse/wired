@@ -37,9 +37,18 @@ You can also define Components by using the @Component annotation
 
 For the moment we only support set dependency injections and not constructor dependency injection.
 
+#### Qualifier ####
+
+You can use a Qualifier to give the bean a specific name, it is usefull when you want to configure 2 instances of the same class. 
+
+	@Qualifier(name: "firstCounter")
+	@Bean()
+	Calc calc() {
+		return new Calc();
+	}
+
 #### TODO ####
 
-- add Qualifier annotation
 - add Value annotation
 
 ### Notes to Contributors ###

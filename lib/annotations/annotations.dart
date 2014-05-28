@@ -25,3 +25,11 @@ class Config {
   const Config();
   
 }
+
+class Qualifier {
+  
+  final String name;
+    
+  const Qualifier({this.name});
+  
+}

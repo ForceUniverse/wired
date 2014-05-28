@@ -52,9 +52,16 @@ class ApplicationContext {
             
        for (MetaDataValue mv in mirrorValues) {
             InstanceMirror res = mv.invoke([]);
-                    
+            String beanName = mv.name;
+            for (Object obj in mv.getOtherMetadata()) {
+              if (obj is Qualifier) {
+                  Qualifier qualifier = obj;
+                  beanName = qualifier.name;
+               }
+            }
+            
             if (res != null && res.hasReflectee) {
-                _singletons[mv.name] = res.reflectee;
+                _singletons[beanName] = res.reflectee;
             }
        }
   }
