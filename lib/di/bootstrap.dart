@@ -3,6 +3,11 @@ part of force_it;
 class ApplicationContext {
   static Map<String, Object> _singletons = new Map<String, Object>();
   static List<Object> components = new List<Object>();
+  static MessagesContext messageContext = new MessagesContext();
+  
+  static void registerMessage(String key, String yamlContent) {
+    messageContext.register(key, yamlContent);
+  }
   
   static void bootstrap() {
     // first bootstrap your beans
@@ -45,6 +50,16 @@ class ApplicationContext {
        }
     }
     return obj;
+  }
+  
+  static Object _injectValue(Object obj) {
+    MetaDataHelper<Value> varMirrorHelper = new MetaDataHelper<Value>();
+    List<MetaDataValue<Value>> varMirrorModels = varMirrorHelper.getVariableMirrorValues(obj);
+    
+    for(MetaDataValue<Value> varMM in varMirrorModels) {
+       Value value = varMM.object;
+       varMM.instanceMirror.setField(varMM.memberName, messageContext.message(value.name, defaultValue: value.defaultValue));
+    }
   }
   
   static void _register(Object obj) {

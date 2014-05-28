@@ -33,3 +33,12 @@ class Qualifier {
   const Qualifier({this.name});
   
 }
+
+class Value {
+  
+  final String name;
+  final String defaultValue;
+  
+  const Value(this.name, {this.defaultValue});
+  
+}
