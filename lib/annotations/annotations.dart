@@ -39,6 +39,6 @@ class Value {
   final String name;
   final String defaultValue;
   
-  const Value(this.name, {this.defaultValue});
+  const Value(this.name, {this.defaultValue: ""});
   
 }

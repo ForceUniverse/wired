@@ -28,7 +28,7 @@ class Counter {
   
    int count = 0;
   
-   Counter({this.count});
+   Counter({this.count: 0});
    
    int value() {
       return count;
@@ -41,4 +41,14 @@ class Counter {
    void decrease() {
      count--;
    }
+}
+
+class UpperCase {
+  
+  String value;
+  
+  UpperCase(this.value) {
+    this.value = this.value.toUpperCase();   
+  }
+ 
 }

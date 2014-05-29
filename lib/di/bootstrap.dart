@@ -15,7 +15,7 @@ class ApplicationContext {
     List<Object> classes = classesHelper.scan();
           
     for (var obj in classes) {
-        _register(obj);
+        _register(_injectValue(obj));
     }
     
     // search for Components and then inject 
@@ -24,12 +24,12 @@ class ApplicationContext {
             
     for (var component in componentsScanned) {
         // do something with the component
-        components.add(component);  
+        components.add(_injectValue(component));  
     }
     
     // inject the autowired
     _singletons.forEach((key, value) {
-      _inject(value);
+      _inject(_injectValue(value));
     });
     for (var component in components) {
         // do something with the components
@@ -60,6 +60,7 @@ class ApplicationContext {
        Value value = varMM.object;
        varMM.instanceMirror.setField(varMM.memberName, messageContext.message(value.name, defaultValue: value.defaultValue));
     }
+    return obj;
   }
   
   static void _register(Object obj) {
