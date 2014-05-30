@@ -46,6 +46,20 @@ You can use a Qualifier to give the bean a specific name, it is usefull when you
 	Calc calc() {
 		return new Calc();
 	}
+	
+#### Values ####
+
+You can add yaml values into your classes.
+First add them to the applicationContext. The first value is the key of the messages and the second value is the yaml content.
+
+	ApplicationContext.registerMessage("sentences", "sentence: Is this good?");
+	
+Register the messages before calling the method bootstrap of ApplicationContext.
+
+You can add the @Value annotation into a scanned bean.
+
+	@Value("sentence")
+	String value;
 
 #### TODO ####
 
