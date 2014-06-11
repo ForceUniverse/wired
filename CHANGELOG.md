@@ -4,6 +4,10 @@ This file contains highlights of what changes on each version of the forcemvc pa
 
 #### Pub version 0.1.3 ####
 
+Adding a method to get a value from a yaml file through ApplicationContext.
+
+#### Pub version 0.1.3 ####
+
 Now you can inject yaml values into your dart classes.
 
 #### Pub version 0.1.2 ####

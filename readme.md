@@ -61,6 +61,10 @@ You can add the @Value annotation into a scanned bean.
 	@Value("sentence")
 	String value;
 
+You can also get a value from ApplicationContext, like follow:
+
+	ApplicationContext.getValue("sentence");
+
 #### TODO ####
 
 - add Value annotation

@@ -3,10 +3,10 @@ part of force_it;
 class ApplicationContext {
   static Map<String, Object> _singletons = new Map<String, Object>();
   static List<Object> components = new List<Object>();
-  static MessagesContext messageContext = new MessagesContext();
+  static MessagesContext _messageContext = new MessagesContext();
   
   static void registerMessage(String key, String yamlContent) {
-    messageContext.register(key, yamlContent);
+    _messageContext.register(key, yamlContent);
   }
   
   static void bootstrap() {
@@ -20,21 +20,28 @@ class ApplicationContext {
     
     // search for Components and then inject 
     Scanner<Component, Object> componentHelper = new Scanner<Component, Object>();
-    List<Object> componentsScanned = componentHelper.scan();
-            
-    for (var component in componentsScanned) {
-        // do something with the component
-        components.add(_injectValue(component));  
-    }
     
     // inject the autowired
     _singletons.forEach((key, value) {
       _inject(_injectValue(value));
     });
-    for (var component in components) {
-        // do something with the components
-        _inject(component);  
-    }
+    
+    component(componentHelper);
+  }
+  
+  static List component(Scanner scanner) {
+        List componentsScanned = scanner.scan();
+                
+        for (var component in componentsScanned) {
+            // do something with the component
+            components.add(_injectValue(component));  
+        }
+        
+        for (var component in components) {
+            // do something with the components
+            _inject(component);  
+        }
+        return componentsScanned;
   }
   
   static Object getBean(String name) => _singletons[name];
@@ -58,9 +65,13 @@ class ApplicationContext {
     
     for(MetaDataValue<Value> varMM in varMirrorModels) {
        Value value = varMM.object;
-       varMM.instanceMirror.setField(varMM.memberName, messageContext.message(value.name, defaultValue: value.defaultValue));
+       varMM.instanceMirror.setField(varMM.memberName, _messageContext.message(value.name, defaultValue: value.defaultValue));
     }
     return obj;
+  }
+  
+  static String getValue(String key, {String defaultValue: ""}) {
+    return _messageContext.message(key, defaultValue: defaultValue);
   }
   
   static void _register(Object obj) {
