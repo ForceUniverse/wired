@@ -16,7 +16,7 @@ class MessagesContext {
     return _find(key, defaultValue);
   }
   
-  String _find(String key, defaultValue) {
+  dynamic _find(String key, defaultValue) {
     for (var doc in messages) {
       if (doc[key]!=null) {
         return doc[key];

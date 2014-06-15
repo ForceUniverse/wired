@@ -1,9 +1,12 @@
+import 'dart:io';
 import 'package:unittest/unittest.dart';
 import 'package:force_it/force_it.dart';
 import 'classes.dart';
 
 main() {  
-  // First tests! 
+  // first read yaml
+  
+  // then fill it in
   ApplicationContext.registerMessage("sentences", "sentence: Is this good?");
   ApplicationContext.bootstrap();
   
