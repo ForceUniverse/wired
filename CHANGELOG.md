@@ -2,7 +2,11 @@
 
 This file contains highlights of what changes on each version of the forcemvc package. 
 
-#### Pub version 0.1.3 ####
+#### Pub version 0.1.3+2 ####
+
+Yaml value can be anything! Change the return type to dynamic to get a value!
+
+#### Pub version 0.1.3+1 ####
 
 Adding a method to get a value from a yaml file through ApplicationContext.
 

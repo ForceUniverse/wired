@@ -12,7 +12,7 @@ class MessagesContext {
     messages.add(doc);
   }
   
-  String message(String key, {defaultValue: ""}) {
+  dynamic message(String key, {defaultValue: ""}) {
     return _find(key, defaultValue);
   }
   
