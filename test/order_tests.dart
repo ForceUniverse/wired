@@ -13,15 +13,15 @@ main() {
   });
 }
 
-@Config()
+@Config
 class SomeConfig {
   
-  @Bean()
+  @Bean
   Calc calc() {
     return new Calc();
   }
   
-  @Bean()
+  @Bean
   Counter counter() {
     return new Counter();
   }

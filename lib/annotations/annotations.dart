@@ -1,14 +1,18 @@
 part of force_it;
 
-class Autowired {
+const Autowired = const _Autowired();
+
+class _Autowired {
   
-  const Autowired();
+  const _Autowired();
   
 }
 
-class Bean {
+const Bean = const _Bean();
+
+class _Bean {
   
-  const Bean();
+  const _Bean();
   
 }
 
@@ -20,9 +24,11 @@ class Component {
   
 }
 
-class Config {
+const Config = const _Config();
+
+class _Config {
   
-  const Config();
+  const _Config();
   
 }
 

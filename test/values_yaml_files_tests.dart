@@ -21,13 +21,13 @@ main() {
        });
 }
 
-@Config()
+@Config
 class SomeConfig {
   
   @Value("framework")
   String framework;
   
-  @Bean()
+  @Bean
   UpperCase upperCase() {
     return new UpperCase(framework);
   } 
