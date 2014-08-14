@@ -13,16 +13,16 @@ main() {
   });
 }
 
-@Config()
+@Config
 class SomeConfig {
   
-  @Bean()
+  @Bean
   @Qualifier(name: "firstCounter")
   Counter counter() {
     return new Counter(count: 1);
   } 
   
-  @Bean()
+  @Bean
   @Qualifier(name: "secondCounter")
   Counter counter2() {
     return new Counter(count: 5);

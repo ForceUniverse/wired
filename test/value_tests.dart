@@ -17,13 +17,13 @@ main() {
   });
 }
 
-@Config()
+@Config
 class SomeConfig {
   
   @Value("sentence")
   String value;
   
-  @Bean()
+  @Bean
   UpperCase upperCase() {
     return new UpperCase(value);
   } 

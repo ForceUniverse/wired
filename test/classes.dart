@@ -3,7 +3,7 @@ import 'package:force_it/force_it.dart';
 @Component()
 class DoSomeComp {
   
-  @Autowired()
+  @Autowired
   Calc calc;
   
   int someCalc () {
@@ -17,7 +17,7 @@ class DoSomeComp {
 
 class Calc {
   
-  @Autowired()
+  @Autowired
   Counter counter;
   
   int multiply() => (counter.value() * counter.value());
