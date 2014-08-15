@@ -14,15 +14,15 @@ To bootstrap your injections call
 	
 To configure your classes make a configuration class
 
-	@Config()
+	@Config
 	class SomeConfig {
 	  
-	  @Bean()
+	  @Bean
 	  Counter counter() {
 	    return new Counter();
 	  }
 	  
-	  @Bean()
+	  @Bean
 	  Calc calc() {
 	    return new Calc();
 	  }
@@ -42,7 +42,7 @@ For the moment we only support set dependency injections and not constructor dep
 You can use a Qualifier to give the bean a specific name, it is usefull when you want to configure 2 instances of the same class. 
 
 	@Qualifier(name: "firstCounter")
-	@Bean()
+	@Bean
 	Calc calc() {
 		return new Calc();
 	}
@@ -79,7 +79,7 @@ If you are new to Git or GitHub, please read [this guide](https://help.github.co
 
 #### Dart Force ####
 
-Realtime web framework for dart that uses forcemvc & forcemirrors [source code](https://github.com/jorishermans/dart-force)
+Realtime web framework for dart that uses forcemvc & forcemirrors & force_it [source code](https://github.com/jorishermans/dart-force)
 
 #### Twitter ####
 
