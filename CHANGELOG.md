@@ -2,6 +2,10 @@
 
 This file contains highlights of what changes on each version of the forcemvc package. 
 
+#### Pub version 0.2.1 ####
+
+Fix scanning of config classes and component classes.  
+
 #### Pub version 0.2.0 ####
 
 Remove parentheses from annotations.  

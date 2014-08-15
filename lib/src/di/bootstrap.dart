@@ -11,7 +11,7 @@ class ApplicationContext {
   
   static void bootstrap() {
     // first bootstrap your beans
-    Scanner<Config, Object> classesHelper = new Scanner<Config, Object>();
+    Scanner<_Config, Object> classesHelper = new Scanner<_Config, Object>();
     List<Object> classes = classesHelper.scan();
           
     for (var obj in classes) {
@@ -47,10 +47,10 @@ class ApplicationContext {
   static Object getBean(String name) => _singletons[name];
   
   static Object _inject(Object obj) {
-    MetaDataHelper<Autowired> varMirrorHelper = new MetaDataHelper<Autowired>();
-    List<MetaDataValue<Autowired>> varMirrorModels = varMirrorHelper.getVariableMirrorValues(obj);
+    MetaDataHelper<_Autowired> varMirrorHelper = new MetaDataHelper<_Autowired>();
+    List<MetaDataValue<_Autowired>> varMirrorModels = varMirrorHelper.getVariableMirrorValues(obj);
           
-    for(MetaDataValue<Autowired> varMM in varMirrorModels) {
+    for(MetaDataValue<_Autowired> varMM in varMirrorModels) {
        var value = _singletons[varMM.name];
        if (value!=null) {
            varMM.instanceMirror.setField(varMM.memberName, value);
@@ -75,7 +75,7 @@ class ApplicationContext {
   }
   
   static void _register(Object obj) {
-       List<MetaDataValue<Bean>> mirrorValues = new MetaDataHelper<Bean>().getMirrorValues(obj);
+       List<MetaDataValue<_Bean>> mirrorValues = new MetaDataHelper<_Bean>().getMirrorValues(obj);
             
        for (MetaDataValue mv in mirrorValues) {
             InstanceMirror res = mv.invoke([]);
