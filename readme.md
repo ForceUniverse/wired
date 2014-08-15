@@ -1,6 +1,6 @@
 ### Force IT ###
 
-![LOGO!](https://raw.github.com/jorishermans/dart-force/master/resources/dart_force_logo.jpg)
+![LOGO!](https://raw.github.com/ForceUniverse/dart-force/master/resources/dart_force_logo.jpg)
 
 Part of the Dart Force Framework.
 
@@ -79,7 +79,7 @@ If you are new to Git or GitHub, please read [this guide](https://help.github.co
 
 #### Dart Force ####
 
-Realtime web framework for dart that uses forcemvc & forcemirrors & force_it [source code](https://github.com/jorishermans/dart-force)
+Realtime web framework for dart that uses forcemvc & forcemirrors & force_it [source code](https://github.com/ForceUniverse/dart-force)
 
 #### Twitter ####
 
