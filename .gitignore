@@ -6,3 +6,5 @@ build
 *.js
 pubspec.lock
 .idea
+/dart-force_it.iml
+/.settings/*
