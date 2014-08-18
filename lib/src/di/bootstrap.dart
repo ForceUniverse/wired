@@ -24,7 +24,7 @@ class ApplicationContext {
     );
     
     // search for Components and then inject 
-    Scanner<Component, Object> componentHelper = new Scanner<Component, Object>();
+    Scanner<Component> componentHelper = new Scanner<Component>();
     
     // inject the autowired
     _singletons.forEach((key, value) {
