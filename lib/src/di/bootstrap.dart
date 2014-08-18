@@ -41,13 +41,12 @@ class ApplicationContext {
   static Iterable addComponents(Iterable scannedComponents) {
     for (var scannedComponent in scannedComponents) {
         // do something with the component
-        components.add(_injectValue(scannedComponent));  
+        var injectedComponent = _injectValue(scannedComponent);
+        components.add(injectedComponent); 
+        
+        _inject(injectedComponent);
     }
     
-    for (var scannedComponent in scannedComponents) {
-        // do something with the components
-        _inject(scannedComponent);  
-    }
     return scannedComponents;
   }
 
