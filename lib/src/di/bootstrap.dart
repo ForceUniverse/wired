@@ -44,7 +44,7 @@ class ApplicationContext {
         components.add(_injectValue(scannedComponent));  
     }
     
-    for (var scannedComponent in components) {
+    for (var scannedComponent in scannedComponents) {
         // do something with the components
         _inject(scannedComponent);  
     }

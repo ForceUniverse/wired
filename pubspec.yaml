@@ -1,5 +1,5 @@
 name: force_it
-version: 0.2.2
+version: 0.3.0
 author: Joris Hermans <hermansj@gmail.com>
 description: A modern dependency injection like java spring package
 homepage: https://github.com/ForceUniverse/dart-force_it
