@@ -22,11 +22,8 @@ class ApplicationContext {
     new Scanner<_Config>().scan().forEach((obj) =>
         _register(_injectValue(obj))
     );
-    
-    // search for Components and then inject 
-    Scanner<Component> componentHelper = new Scanner<Component>();
-    
-    // inject the autowired
+ 
+    // inject the _Autowired
     _singletons.forEach((key, value) {
       _inject(_injectValue(value));
     });
