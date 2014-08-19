@@ -1,10 +1,10 @@
 name: force_it
-version: 0.2.1+1
+version: 0.3.0
 author: Joris Hermans <hermansj@gmail.com>
 description: A modern dependency injection like java spring package
 homepage: https://github.com/ForceUniverse/dart-force_it
 dependencies:
-  forcemirrors: '>=0.1.10 <0.2.0'
+  forcemirrors: '>=0.2.0 <0.3.0'
   yaml: '>=0.9.0 <0.10.0'
 dev_dependencies:
   unittest: '>=0.9.0 <0.9.1'
