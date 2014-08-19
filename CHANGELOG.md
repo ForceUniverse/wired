@@ -2,6 +2,17 @@
 
 This file contains highlights of what changes on each version of the forcemvc package. 
 
+#### Pub version 0.3.1 ####
+
+Improved the addComponents method
+
+#### Pub version 0.3.0 ####
+
+Add documentation
+Change component(Scanner scanner) to addComponents(Iterable objs)
+Change MetaDataHelper().getVariableMirrorValues(obj) to MetaDataHelper<_Autowired, VariableMirror>().from(obj)
+Change MetaDataHelper().getMirrorValues(obj) to MetaDataHelper<_Bean, MethodMirror>().from(obj)
+
 #### Pub version 0.2.1+1 ####
 
 Moving repo to ForceUniverse organisation  

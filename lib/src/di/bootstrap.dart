@@ -22,7 +22,7 @@ class ApplicationContext {
     new Scanner<_Config>().scan().forEach((obj) =>
         _register(_injectValue(obj))
     );
-
+ 
     // inject the _Autowired
     _singletons.forEach((key, value) {
       _inject(_injectValue(value));
@@ -38,13 +38,12 @@ class ApplicationContext {
   static Iterable addComponents(Iterable scannedComponents) {
     for (var scannedComponent in scannedComponents) {
         // do something with the component
-        components.add(_injectValue(scannedComponent));  
+        var injectedComponent = _injectValue(scannedComponent);
+        components.add(injectedComponent); 
+        
+        _inject(injectedComponent);
     }
     
-    for (var scannedComponent in components) {
-        // do something with the components
-        _inject(scannedComponent);  
-    }
     return scannedComponents;
   }
 
@@ -93,7 +92,7 @@ class ApplicationContext {
    */
   static void _register(Object obj) {
        List<MetaDataValue<_Bean>> mirrorValues = new MetaDataHelper<_Bean, MethodMirror>().from(obj);
-            
+
        for (MetaDataValue mv in mirrorValues) {
             InstanceMirror res = mv.invoke([]);
             String beanName = mv.name;
