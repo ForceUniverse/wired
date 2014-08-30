@@ -18,15 +18,21 @@ class ApplicationContext {
    * and @Autowired
    */
   static void bootstrap() {
-    // first bootstrap your beans
-    new Scanner<_Config>().scan().forEach((obj) =>
-        _register(_injectValue(obj))
-    );
+    // first bootstrap your configuration
+    new Scanner<_Config>().scan().forEach((obj) {
+        DependencyTree dt = calculateDependencyTree(_injectValue(obj));
+        //_register(_injectValue(obj))
+        dt.sort();
+        
+        dt.dependencyTreeList.forEach((DependencyTreeInfo dti) {
+            _instantiateSingletons(dti.mdv);
+        });
+    });
  
     // inject the _Autowired
-    _singletons.forEach((key, value) {
-      _inject(_injectValue(value));
-    });
+    _singletons.forEach((key, value) =>
+      _inject(_injectValue(value))
+    );
 
     // search for Components and then inject
     addComponents(new Scanner<Component>().scan());
@@ -86,6 +92,25 @@ class ApplicationContext {
   static String getValue(String key, {String defaultValue: ""}) {
     return _messageContext.message(key, defaultValue: defaultValue);
   }
+  
+  /**
+   * build up a dependency tree that we can use to build our objects.
+   */
+  static DependencyTree calculateDependencyTree(Object obj) {
+    // get all the methods annotated with _Bean
+    List<MetaDataValue<_Bean>> mirrorValues = new MetaDataHelper<_Bean, MethodMirror>().from(obj);
+    
+    DependencyTree dependencyTree = new DependencyTree();
+    
+    DependencyTreeInfo dependencyTreeInfo;
+    for (MetaDataValue mv in mirrorValues) {
+      List<MetaDataValue<_Autowired>> varMirrorModels = new MetaDataHelper<_Autowired, VariableMirror>().fromMirror(mv.instanceMirror);
+      
+      dependencyTree.add(new DependencyTreeInfo(mv, varMirrorModels));
+    }
+    
+    return dependencyTree;
+  }
 
   /**
    * Register all elements annotated with @Bean
@@ -94,18 +119,25 @@ class ApplicationContext {
        List<MetaDataValue<_Bean>> mirrorValues = new MetaDataHelper<_Bean, MethodMirror>().from(obj);
 
        for (MetaDataValue mv in mirrorValues) {
-            InstanceMirror res = mv.invoke([]);
-            String beanName = mv.name;
-            for (Object obj in mv.getOtherMetadata()) {
-              if (obj is Qualifier) {
-                  Qualifier qualifier = obj;
-                  beanName = qualifier.name;
-               }
-            }
-            
-            if (res != null && res.hasReflectee) {
-                _singletons[beanName] = res.reflectee;
-            }
+            _instantiateSingletons(mv);
        }
+  }
+  
+  /**
+   * create an object based upon his [MetaDataValue]
+   */
+  static void _instantiateSingletons(MetaDataValue mv) {
+    InstanceMirror res = mv.invoke([]);
+    String beanName = mv.name;
+    for (Object obj in mv.getOtherMetadata()) {
+        if (obj is Qualifier) {
+            Qualifier qualifier = obj;
+            beanName = qualifier.name;
+        }
+    }
+                
+    if (res != null && res.hasReflectee) {
+        _singletons[beanName] = res.reflectee;
+    }
   }
 }
