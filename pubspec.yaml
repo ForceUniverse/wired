@@ -2,7 +2,7 @@ name: wired
 version: 0.3.2
 author: Joris Hermans <hermansj@gmail.com>
 description: A modern dependency injection like java spring package
-homepage: https://github.com/ForceUniverse/dart-force_it
+homepage: https://github.com/ForceUniverse/wired
 dependencies:
   forcemirrors: '>=0.2.1+5 <0.3.0'
   yaml: '>=0.9.0 <0.10.0'
