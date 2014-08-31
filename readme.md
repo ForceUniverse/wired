@@ -67,7 +67,7 @@ You can also get a value from ApplicationContext, like follow:
 
 #### TODO ####
 
-- add Value annotation
+- add posibility to add @Autowired in constructor values
 
 ### Notes to Contributors ###
 
