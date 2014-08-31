@@ -21,7 +21,6 @@ class ApplicationContext {
     // first bootstrap your configuration
     new Scanner<_Config>().scan().forEach((obj) {
         DependencyTree dt = calculateDependencyTree(_injectValue(obj));
-        //_register(_injectValue(obj))
         dt.sort();
         
         dt.dependencyTreeList.forEach((DependencyTreeInfo dti) {
