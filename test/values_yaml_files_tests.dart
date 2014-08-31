@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:unittest/unittest.dart';
-import 'package:force_it/force_it.dart';
+import 'package:wired/wired.dart';
 import 'classes.dart';
 
 main() {  

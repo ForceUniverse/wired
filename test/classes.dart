@@ -1,4 +1,4 @@
-import 'package:force_it/force_it.dart';
+import 'package:wired/wired.dart';
 
 @Component()
 class DoSomeComp {

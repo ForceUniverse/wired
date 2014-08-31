@@ -1,4 +1,4 @@
-part of force_it;
+part of wired;
 
 class MessagesContext {
   

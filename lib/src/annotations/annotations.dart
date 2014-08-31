@@ -1,4 +1,4 @@
-part of force_it;
+part of wired;
 
 const Autowired = const _Autowired();
 

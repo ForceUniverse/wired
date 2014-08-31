@@ -1,6 +1,12 @@
 ### Changelog ###
 
-This file contains highlights of what changes on each version of the forcemvc package. 
+This file contains highlights of what changes on each version of the wired package. 
+
+#### Pub version 0.3.2 ####
+
+Add static method getBeanByType on ApplicationContext
+Also resolve autowired cases by Type and not only by name
+Rename package to 'wired'
 
 #### Pub version 0.3.1 ####
 

@@ -1,4 +1,4 @@
-part of force_it;
+part of wired;
 /**
  * Class that is in charge of mantaining the Application Context.
  * ie. list of Components, Controllers, ...
@@ -20,12 +20,8 @@ class ApplicationContext {
   static void bootstrap() {
     // first bootstrap your configuration
     new Scanner<_Config>().scan().forEach((obj) {
-        DependencyTree dt = calculateDependencyTree(_injectValue(obj));
-        dt.sort();
-        
-        dt.dependencyTreeList.forEach((DependencyTreeInfo dti) {
-            _instantiateSingletons(dti.mdv);
-        });
+        // DependencyTree dt = _registerOnTree(obj);
+        _register(_injectValue(obj));
     });
  
     // inject the _Autowired
@@ -56,6 +52,18 @@ class ApplicationContext {
    * Gets the Named Bean declared in @Config files
    */
   static Object getBean(String name) => _singletons[name];
+  
+  /**
+   * Gets the Named Bean by [Type] declared in @Config files
+   */
+  static Object getBeanByType(Type type) {
+    for ( var obj in _singletons.values ) {
+      if (obj.runtimeType == type) {
+        return obj;
+      }
+    }
+    return null;
+  }
 
   /**
    * Inject the variables annotated with @[Autowired]
@@ -65,6 +73,11 @@ class ApplicationContext {
           
     for(MetaDataValue<_Autowired> varMM in varMirrorModels) {
        var value = _singletons[varMM.name];
+       if (value==null) {
+         // look for type!
+         Type type = varMM.typeOfOwner();
+         value = getBeanByType(type);
+       }
        if (value!=null) {
            varMM.instanceMirror.setField(varMM.memberName, value);
        }
@@ -92,25 +105,6 @@ class ApplicationContext {
     return _messageContext.message(key, defaultValue: defaultValue);
   }
   
-  /**
-   * build up a dependency tree that we can use to build our objects.
-   */
-  static DependencyTree calculateDependencyTree(Object obj) {
-    // get all the methods annotated with _Bean
-    List<MetaDataValue<_Bean>> mirrorValues = new MetaDataHelper<_Bean, MethodMirror>().from(obj);
-    
-    DependencyTree dependencyTree = new DependencyTree();
-    
-    DependencyTreeInfo dependencyTreeInfo;
-    for (MetaDataValue mv in mirrorValues) {
-      List<MetaDataValue<_Autowired>> varMirrorModels = new MetaDataHelper<_Autowired, VariableMirror>().fromMirror(mv.instanceMirror);
-      
-      dependencyTree.add(new DependencyTreeInfo(mv, varMirrorModels));
-    }
-    
-    return dependencyTree;
-  }
-
   /**
    * Register all elements annotated with @Bean
    */
