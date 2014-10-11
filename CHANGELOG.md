@@ -2,6 +2,10 @@
 
 This file contains highlights of what changes on each version of the wired package. 
 
+#### Pub version 0.3.2+1 ####
+
+Update YAML dependency.
+
 #### Pub version 0.3.2 ####
 
 Add static method getBeanByType on ApplicationContext
