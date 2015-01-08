@@ -2,10 +2,10 @@
 
 This file contains highlights of what changes on each version of the wired package. 
 
-#### Pub version 0.3.3 ####
+#### Pub version 0.4.0 ####
 
 Adding setBean method in ApplicationContext
-Update dependencies to mirrorme (renaming forcemirrors)
+Update dependencies to mirrorme (renaming forcemirrors) this is not bc
 
 #### Pub version 0.3.2+1 ####
 
