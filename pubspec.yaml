@@ -1,5 +1,5 @@
 name: wired
-version: 0.3.2+1
+version: 0.3.3
 author: Joris Hermans <hermansj@gmail.com>
 description: A modern dependency injection like java spring package
 homepage: https://github.com/ForceUniverse/wired

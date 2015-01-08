@@ -2,6 +2,10 @@
 
 This file contains highlights of what changes on each version of the wired package. 
 
+#### Pub version 0.3.3 ####
+
+Adding setBean method in ApplicationContext
+
 #### Pub version 0.3.2+1 ####
 
 Update YAML dependency.
