@@ -1,7 +1,7 @@
 library wired;
 
 import 'dart:mirrors';
-import 'package:forcemirrors/force_mirrors.dart';
+import 'package:mirrorme/mirrorme.dart';
 import 'package:yaml/yaml.dart';
 
 part 'src/annotations/annotations.dart';

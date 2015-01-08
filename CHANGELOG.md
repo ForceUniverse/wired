@@ -5,6 +5,7 @@ This file contains highlights of what changes on each version of the wired packa
 #### Pub version 0.3.3 ####
 
 Adding setBean method in ApplicationContext
+Update dependencies to mirrorme (renaming forcemirrors)
 
 #### Pub version 0.3.2+1 ####
 
