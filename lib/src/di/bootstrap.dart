@@ -54,6 +54,13 @@ class ApplicationContext {
   static Object getBean(String name) => _singletons[name];
   
   /**
+   * Register a bean in the singletons array
+   */
+  static void setBean(String name, Object obj) {
+    _singletons[name] = obj;
+  }
+  
+  /**
    * Gets the Named Bean by [Type] declared in @Config files
    */
   static Object getBeanByType(Type type) {
