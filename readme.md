@@ -71,7 +71,7 @@ You can also get a value from ApplicationContext, like follow:
 
 ### Notes to Contributors ###
 
-#### Fork Force_it ####
+#### Fork Wired ####
 
 If you'd like to contribute back to the core, you can [fork this repository](https://help.github.com/articles/fork-a-repo) and send us a pull request, when it is ready.
 
