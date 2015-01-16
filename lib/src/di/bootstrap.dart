@@ -67,9 +67,27 @@ class ApplicationContext {
     for ( var obj in _singletons.values ) {
       if (obj.runtimeType == type) {
         return obj;
+      } else {
+        // check super classes
+        InstanceMirror instanceMirror = reflect(obj);
+        ClassMirror classMirror = instanceMirror.type;
+        return _superClassSearch(classMirror, type, obj);
       }
     }
     return null;
+  }
+  
+  static Object _superClassSearch(ClassMirror classMirror, Type type, Object obj) {
+    ClassMirror superClassMirror = classMirror.superclass;
+    if (superClassMirror != null) {
+      if (superClassMirror.reflectedType == type) {
+          return obj;
+      } else {
+          return _superClassSearch(superClassMirror, type, obj);
+      }
+    } else {
+      return null;
+    }
   }
 
   /**
