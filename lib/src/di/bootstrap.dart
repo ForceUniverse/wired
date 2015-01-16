@@ -72,8 +72,16 @@ class ApplicationContext {
         InstanceMirror instanceMirror = reflect(obj);
         ClassMirror classMirror = instanceMirror.type;
         Object returnable = _superClassSearch(classMirror, type, obj);
-        if (returnable != null) {
+        if ( returnable != null ) {
           return returnable;
+        } else {
+          // look at interfaces
+          List<ClassMirror> interfaces = classMirror.superinterfaces;
+          for ( ClassMirror interface in interfaces ) {
+            if ( interface.reflectedType == type ) {
+                return obj;
+            } 
+          }
         }
       }
     }
