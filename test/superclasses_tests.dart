@@ -16,10 +16,19 @@ main() {
 class SomeConfig {
   
   @Bean
+  Rrr justsomething() {
+    return new Rrr();
+  }
+  
+  @Bean
   ASuper asuper() {
     return new C();
   }
 
+}
+
+class Rrr {
+  String justsomething() => "Rrr";
 }
 
 class ASuper {

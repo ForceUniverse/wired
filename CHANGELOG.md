@@ -2,6 +2,10 @@
 
 This file contains highlights of what changes on each version of the wired package. 
 
+#### Pub version 0.4.2 ####
+
+Fix issue with getBeanByType, when more beans are in the pool, adapt tests
+
 #### Pub version 0.4.1 ####
 
 Adapting getBeanByType so it will accept also and can work with subclasses and superclasses

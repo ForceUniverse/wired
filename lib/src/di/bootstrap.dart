@@ -71,7 +71,10 @@ class ApplicationContext {
         // check super classes
         InstanceMirror instanceMirror = reflect(obj);
         ClassMirror classMirror = instanceMirror.type;
-        return _superClassSearch(classMirror, type, obj);
+        Object returnable = _superClassSearch(classMirror, type, obj);
+        if (returnable != null) {
+          return returnable;
+        }
       }
     }
     return null;
