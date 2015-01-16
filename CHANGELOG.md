@@ -2,6 +2,10 @@
 
 This file contains highlights of what changes on each version of the wired package. 
 
+#### Pub version 0.4.1 ####
+
+Adapting getBeanByType so it will accept also and can work with subclasses and superclasses
+
 #### Pub version 0.4.0 ####
 
 Adding setBean method in ApplicationContext
