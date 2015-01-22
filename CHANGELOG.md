@@ -2,9 +2,13 @@
 
 This file contains highlights of what changes on each version of the wired package. 
 
+#### Pub version 0.4.3+1 ####
+
+- look at interfaces on all levels (getBeanByType)
+
 #### Pub version 0.4.3 ####
 
-getBeanByType, also look at his interfaces!
+- getBeanByType, also look at his interfaces!
 
 #### Pub version 0.4.2 ####
 
