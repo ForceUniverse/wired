@@ -76,12 +76,8 @@ class ApplicationContext {
           return returnable;
         } else {
           // look at interfaces
-          List<ClassMirror> interfaces = classMirror.superinterfaces;
-          for ( ClassMirror interface in interfaces ) {
-            if ( interface.reflectedType == type ) {
-                return obj;
-            } 
-          }
+          Object scanForObj = _interfaceScanning(classMirror, type, obj);
+          if (scanForObj != null) return scanForObj;
         }
       }
     }
@@ -94,6 +90,9 @@ class ApplicationContext {
       if (superClassMirror.reflectedType == type) {
           return obj;
       } else {
+          // Look at the superclass interfaces
+          Object scanForObj = _interfaceScanning(superClassMirror, type, obj);
+          if (scanForObj != null) return scanForObj;
           return _superClassSearch(superClassMirror, type, obj);
       }
     } else {
@@ -101,6 +100,16 @@ class ApplicationContext {
     }
   }
 
+  static Object _interfaceScanning(ClassMirror classMirror, Type type, Object obj) {
+    List<ClassMirror> interfaces = classMirror.superinterfaces;
+    for ( ClassMirror interface in interfaces ) {
+          if ( interface.reflectedType == type ) {
+               return obj;
+          } 
+    }
+    return null;
+  }
+  
   /**
    * Inject the variables annotated with @[Autowired]
    */
