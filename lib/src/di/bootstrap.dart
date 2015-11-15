@@ -23,8 +23,7 @@ class ApplicationContext {
     new Scanner<_Config>().scan().forEach((obj) {
         // DependencyTree dt = _registerOnTree(obj);
         var order = new AnnotationScanner<Order>().instanceFrom(obj);
-        var index = order?.priority;
-        index ??= objects.length;
+        var index = order==null ? objects.length : order.priority;
 
         objects.insert(index, obj);
     });
