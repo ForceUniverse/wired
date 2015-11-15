@@ -7,7 +7,7 @@ class ApplicationContext {
   static Map<String, Object> _singletons = new Map<String, Object>();
   static List<Object> components = [];
   static MessagesContext _messageContext = new MessagesContext();
-  
+
   static void registerMessage(String key, String yamlContent) {
     _messageContext.register(key, yamlContent);
   }
@@ -18,12 +18,21 @@ class ApplicationContext {
    * and @Autowired
    */
   static void bootstrap() {
-    // first bootstrap your configuration
+    // first bootstrap your configuration, look at the order annotation.
+    List objects = new List();
     new Scanner<_Config>().scan().forEach((obj) {
         // DependencyTree dt = _registerOnTree(obj);
-        _register(_injectValue(obj));
+        var order = new AnnotationScanner<Order>().instanceFrom(obj);
+        var index = order?.priority;
+        index ??= objects.length;
+
+        objects.insert(index, obj);
     });
- 
+
+    objects.forEach((obj) {
+      _register(_injectValue(obj));
+    });
+
     // inject the _Autowired
     _singletons.forEach((key, value) =>
       _inject(_injectValue(value))
@@ -40,11 +49,11 @@ class ApplicationContext {
     for (var scannedComponent in scannedComponents) {
         // do something with the component
         var injectedComponent = _injectValue(scannedComponent);
-        components.add(injectedComponent); 
-        
+        components.add(injectedComponent);
+
         _inject(injectedComponent);
     }
-    
+
     return scannedComponents;
   }
 
@@ -52,14 +61,14 @@ class ApplicationContext {
    * Gets the Named Bean declared in @Config files
    */
   static Object getBean(String name) => _singletons[name];
-  
+
   /**
    * Register a bean in the singletons array
    */
   static void setBean(String name, Object obj) {
     _singletons[name] = obj;
   }
-  
+
   /**
    * Gets the Named Bean by [Type] declared in @Config files
    */
@@ -83,7 +92,7 @@ class ApplicationContext {
     }
     return null;
   }
-  
+
   static Object _superClassSearch(ClassMirror classMirror, Type type, Object obj) {
     ClassMirror superClassMirror = classMirror.superclass;
     if (superClassMirror != null) {
@@ -105,17 +114,17 @@ class ApplicationContext {
     for ( ClassMirror interface in interfaces ) {
           if ( interface.reflectedType == type ) {
                return obj;
-          } 
+          }
     }
     return null;
   }
-  
+
   /**
    * Inject the variables annotated with @[Autowired]
    */
   static Object _inject(Object obj) {
     List<MetaDataValue<_Autowired>> varMirrorModels = new MetaDataHelper<_Autowired, VariableMirror>().from(obj);
-          
+
     for(MetaDataValue<_Autowired> varMM in varMirrorModels) {
        var value = _singletons[varMM.name];
        if (value==null) {
@@ -135,7 +144,7 @@ class ApplicationContext {
    */
   static Object _injectValue(Object obj) {
     List<MetaDataValue<Value>> varMirrorModels = new MetaDataHelper<Value, VariableMirror>().from(obj);
-    
+
     for(MetaDataValue<Value> varMM in varMirrorModels) {
        Value value = varMM.object;
        varMM.instanceMirror.setField(varMM.memberName, _messageContext.message(value.name, defaultValue: value.defaultValue));
@@ -149,7 +158,7 @@ class ApplicationContext {
   static String getValue(String key, {String defaultValue: ""}) {
     return _messageContext.message(key, defaultValue: defaultValue);
   }
-  
+
   /**
    * Register all elements annotated with @Bean
    */
@@ -160,7 +169,7 @@ class ApplicationContext {
             _instantiateSingletons(mv);
        }
   }
-  
+
   /**
    * create an object based upon his [MetaDataValue]
    */
@@ -173,7 +182,7 @@ class ApplicationContext {
             beanName = qualifier.name;
         }
     }
-                
+
     if (res != null && res.hasReflectee) {
         _singletons[beanName] = res.reflectee;
     }

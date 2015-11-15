@@ -24,7 +24,16 @@ class Component {
   
 }
 
+class Order {
+
+  final int priority;
+
+  Order(this.priority);
+
+}
+
 const Config = const _Config();
+const Configuration = const _Config();
 
 class _Config {
   
