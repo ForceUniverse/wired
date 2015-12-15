@@ -11,25 +11,25 @@ A library to do dependency injection! It uses the same annotations as in java sp
 To bootstrap your injections call
 
 	ApplicationContext.bootstrap();
-	
+
 To configure your classes make a configuration class
 
 	@Config
 	class SomeConfig {
-	  
+
 	  @Bean
 	  Counter counter() {
 	    return new Counter();
 	  }
-	  
+
 	  @Bean
 	  Calc calc() {
 	    return new Calc();
 	  }
-	  
+
 	}
-	
-When you want to access an instance you can call 
+
+When you want to access an instance you can call
 
 	ApplicationContext.getBean("counter");
 
@@ -39,21 +39,21 @@ For the moment we only support set dependency injections and not constructor dep
 
 #### Qualifier ####
 
-You can use a Qualifier to give the bean a specific name, it is usefull when you want to configure 2 instances of the same class. 
+You can use a Qualifier to give the bean a specific name, it is usefull when you want to configure 2 instances of the same class.
 
 	@Qualifier(name: "firstCounter")
 	@Bean
 	Calc calc() {
 		return new Calc();
 	}
-	
+
 #### Values ####
 
 You can add yaml values into your classes.
 First add them to the applicationContext. The first value is the key of the messages and the second value is the yaml content.
 
 	ApplicationContext.registerMessage("sentences", "sentence: Is this good?");
-	
+
 Register the messages before calling the method bootstrap of ApplicationContext.
 
 You can add the @Value annotation into a scanned bean.
@@ -64,6 +64,14 @@ You can add the @Value annotation into a scanned bean.
 You can also get a value from ApplicationContext, like follow:
 
 	ApplicationContext.getValue("sentence");
+
+#### Order ####
+
+With the @order annotation we can set the order of a configuration class.
+
+	@Config
+	@Order(2)
+	class ConfigComp { }
 
 #### TODO ####
 
