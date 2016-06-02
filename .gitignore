@@ -8,3 +8,4 @@ pubspec.lock
 .idea
 /dart-force_it.iml
 /.settings/*
+.packages
