@@ -155,7 +155,7 @@ class ApplicationContext {
   /**
    * Gets the value of the annotation @[Value]
    */
-  static String getValue(String key, {String defaultValue: ""}) {
+  static getValue(String key, {String defaultValue: ""}) {
     return _messageContext.message(key, defaultValue: defaultValue);
   }
 
