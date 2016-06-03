@@ -2,6 +2,10 @@
 
 This file contains highlights of what changes on each version of the wired package.
 
+#### Pub version 0.4.5 ####
+
+- @Value annotations can now be any valid YAML value
+
 #### Pub version 0.4.4 ####
 
 - At annotation @order into the library, @order helps you to order the configuration classes.
